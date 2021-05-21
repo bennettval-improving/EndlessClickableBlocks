@@ -1,8 +1,9 @@
 .block {
-    height: 100px;
-    width: 100px;
+    max-height: 300px;
+    max-width: 300px;
     border: solid 1px black;
     display: inline-block;
+    margin: 5px 5px;
 }
 
 .target {
@@ -16,4 +17,32 @@
 
 .selected {
     background-color: cornflowerblue;
+}
+
+/*=================== New Content ============================*/
+
+.container {
+    display: flex;
+    margin: 85px 10px 25px 10px;
+}
+
+body > header {
+    border-bottom: solid black 3px;
+    margin-bottom: 25px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    overflow: hidden;
+    background-color: #333;
+    color: #fff;
+}
+
+body > header > h3 {
+    margin-left: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0 auto;
 }
