@@ -9,12 +9,16 @@ const imageArray = [
     'Images/underwaterDog8.jpg', 
     'Images/underwaterDog9.jpg'];
 const targetDiv = document.querySelector('#target-div');
+const detailsPopUp = document.querySelector('#details-pop-up');
+const popUpImage = document.querySelector('#pop-up-image');
+const popUpImageTitle = document.querySelector('.details-container > h3');
+const exitSign = document.querySelector('#exit-sign');
+const blocksContainer = document.querySelector('.blocks-container');
 
 function addOneHundredDogs() {
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 100; i++) { 
         let randomNum = Math.floor(Math.random() * 9);
         let dog = document.createElement('img');
-        //dog.setAttribute('src', imageArray[randomNum]);
         dog.src = imageArray[randomNum];
         dog.classList.add('block');
         targetDiv.appendChild(dog);
@@ -28,20 +32,20 @@ window.addEventListener('scroll', () => {
     }
 });
 
+targetDiv.addEventListener('click', (evt) => {
+    if (evt.target.tagName === 'IMG') {
+        popUpImage.src = evt.target.src;
+        let srcArray = evt.target.src.split('/');
+        popUpImageTitle.textContent = srcArray[srcArray.length - 1];
+        detailsPopUp.style = 'display: inline-block';
+        blocksContainer.style = 'margin-right: 40%';
+    }
+});
+
+exitSign.addEventListener('click', () => {
+    detailsPopUp.style = 'display: none';
+    blocksContainer.style = 'margin-right: 10px';
+});
+
 addOneHundredDogs();
 
-// addBlocksBtn.addEventListener('click', () => {
-//     let randomBlocks = Math.floor(Math.random() * 10);
-
-//     for (let i = 0; i < randomBlocks; i++) {
-//         let randomNum = Math.floor(Math.random() * 1000);
-//         let block = document.createElement('div');
-//         block.textContent = randomNum;
-//         block.classList.add('block');
-//         targetDiv.appendChild(block);
-//     }
-// });
-
-// targetDiv.addEventListener('click', (evt) => {
-//     if (evt.target.classList.contains('block')) evt.target.classList.toggle('selected');
-// });

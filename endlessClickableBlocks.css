@@ -1,14 +1,18 @@
 .block {
-    max-height: 300px;
-    max-width: 300px;
+    max-width: 293px;
     border: solid 1px black;
     display: inline-block;
-    margin: 5px 5px;
+    margin: 15px 15px;
 }
 
-.target {
-    
+.block:hover {
+    box-shadow: 0 0 15px grey;
+}
+
+#target-div {
     max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .add-blocks-btn {
@@ -21,28 +25,76 @@
 
 /*=================== New Content ============================*/
 
-.container {
+.outer-container {
+    /* display: flex; */
+    margin-top: 59px;
+}
+
+.blocks-container {
     display: flex;
-    margin: 85px 10px 25px 10px;
+    margin: 75px 10px 25px 10px;
 }
 
 body > header {
-    border-bottom: solid black 3px;
     margin-bottom: 25px;
     position: fixed;
     width: 100%;
     top: 0;
     overflow: hidden;
-    background-color: #333;
-    color: #fff;
+    background-color: white;
+    color: black;
+    box-shadow: 0px 0px 8px 0px grey;
 }
 
 body > header > h3 {
     margin-left: 10px;
+}
+
+h3 {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.details-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.details-container > h3 {
+    margin: 20px 20px;
+    text-align: center;
+}    
+
+.details-container > img {
+    margin: 20px 20px;
+    max-width: 575px;
+}    
 
 body {
     min-height: 100vh;
     margin: 0 auto;
+}
+
+#details-pop-up {
+    width: 40%;
+    height: 100%;
+    position: fixed;
+    background-color: #333;
+    color: white;
+    top: 59px;
+    right: 0;
+    display: none;
+}
+
+#exit-sign {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 15px 20px;
+    text-align: right;
+    cursor: pointer;
+}
+
+#exit-sign:hover {
+    font-size: 20px;
+    margin-bottom: 11px;
+    text-shadow: 0 0 3px white;
 }
