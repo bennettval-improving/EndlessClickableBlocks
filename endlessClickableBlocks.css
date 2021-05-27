@@ -13,15 +13,22 @@ body > header {
     color: black;
     box-shadow: 0px 0px 8px 0px grey;
     display: flex;
+    align-items: center;
 }
 
 body > header > input {
     margin: 15px 10px;
+    padding: 5px;
     width: 30%;
 }
 
 body > header > h3 {
     margin-left: 10px;
+}
+
+body > header > button {
+    margin: 15px 10px;
+    padding: 4px 10px;
 }
 
 h3 {

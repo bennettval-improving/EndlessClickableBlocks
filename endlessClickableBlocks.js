@@ -5,9 +5,16 @@ const popUpImageTitle = document.querySelector('.details-container > h3');
 const exitSign = document.querySelector('#exit-sign');
 const blocksContainer = document.querySelector('.blocks-container');
 const searchInput = document.querySelector('#search-input');
+const nextPg = document.querySelector('#next-pg');
+const prevPg = document.querySelector('#prev-pg');
+const pgNumberParagraph = document.querySelector('#pg-number');
 
 const baseArtUrl = 'https://api.harvardartmuseums.org/image';
 const apiKey = '?apikey=93be3097-51cc-4177-a633-040b80f209be';
+
+let pageNumber = 1;
+let totalPages = 1;
+let currentSearch = 'book';
 
 targetDiv.addEventListener('click', (evt) => {
     if (evt.target.id === 'target-div') return;
@@ -31,7 +38,30 @@ exitSign.addEventListener('click', () => exitPopUp());
 searchInput.addEventListener('keyup', (evt) => {
     if (evt.key === 'Enter') {
         exitPopUp();
-        getArt(searchInput.value);
+        currentSearch = searchInput.value;
+        getArt();
+    }
+});
+
+nextPg.addEventListener('click', () => {
+    if (pageNumber < totalPages) {
+        pageNumber += 1;
+        pgNumberParagraph.textContent = pageNumber;
+        getArt();
+        
+        if (pageNumber === totalPages) nextPg.disabled = true;
+        prevPg.disabled = false;
+    } else console.log('Cannot go higher');
+});
+
+prevPg.addEventListener('click', () => {
+    if (pageNumber > 1) {
+        pageNumber -= 1;
+        pgNumberParagraph.textContent = pageNumber;
+        getArt();
+
+        nextPg.disabled = false;
+        if (pageNumber === 1) prevPg.disabled = true;
     }
 });
 
@@ -40,11 +70,13 @@ function exitPopUp() {
     blocksContainer.style = 'margin-right: 10px';
 }
 
-function getArt(search) {
-    fetch(`${baseArtUrl}${apiKey}&q=caption:${search}`)
+function getArt() {
+    fetch(`${baseArtUrl}${apiKey}&q=caption:${currentSearch}&page=${pageNumber}`)
         .then(response => response.json())
         .then(data => {
             console.log(data);
+            pageNumber = data.info.page;
+            totalPages = data.info.pages;
             addArtToDocument(data);
         });
 }
@@ -67,4 +99,4 @@ function addArtToDocument(data) {
     });
 }
 
-getArt("book");
+getArt();
